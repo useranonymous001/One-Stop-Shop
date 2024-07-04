@@ -1,0 +1,24 @@
+        ::: SITE DETAILS :::
+
+# Usermodel
+    - fullname : string
+    - email : string
+    - password : string
+    - cart  : array of ID
+    - isAdmin  : Boolean
+    - Orders : array
+    - contact : number
+    - Profile : db
+
+# Product Model
+    - image
+    - name
+    - Price
+    - isInDiscount
+    - bgColor
+    - Panel Color
+    - Text Color
+
+
+
+    
