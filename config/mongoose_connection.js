@@ -1,9 +1,12 @@
 const mongoose = require("mongoose");
+const config = require("config");
+// only shows message until environment variable is not set up
+const dbgr = require("debug")("development:mongoose");
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/laziStore")
+  .connect(`${config.get("MONGODB_URI")}/laziStore`)
   .then(() => {
-    console.log("connected the database");
+    dbgr("connected the database");
   })
   .catch((err) => {
     console.log(err.message);

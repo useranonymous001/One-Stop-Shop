@@ -4,10 +4,11 @@ const productSchema = mongoose.Schema({
   name: {
     type: String,
     required: true,
+    ref: "user",
   },
 
   image: {
-    type: String,
+    type: Buffer,
   },
   price: {
     type: Number,
