@@ -20,4 +20,5 @@ Required Packages or modules and how to install them:
 <h1>How to run?</h1>
 <strong> $ npm init -y </strong>
 <strong> install all the packages mentioned above </strong>
+<br>
 <strong> $ npm start OR npm run start </strong>
