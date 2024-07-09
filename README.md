@@ -17,6 +17,8 @@ Required Packages or modules and how to install them:
   npm i mongoose
   npm i config
 
+  <h3>Check out package.json folder for all the dependencies used </h3>
+
 <h1>One Liner For everything </h1>
 <strong> npm i express mongoose ejs jsonwebtoken bcrypt crypto multer cookie-parser express-session debug dotenv config</strong>
 
