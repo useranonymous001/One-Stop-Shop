@@ -21,7 +21,6 @@ router.get("/shop", isLoggedIn, async (req, res) => {
     .findOne({ email: req.user.email })
     .select("-password");
   let products = await productModel.find();
-
   let success = req.flash("success");
   res.render("shop", { products, success, user });
 });
