@@ -1,3 +1,7 @@
+
+<pre>
+  
+
 One-Stop-Shop is a simple e-commerce site for selling books online related to cyber security and hacking.
 Required Packages or modules and how to install them: 
   npm i express
@@ -23,3 +27,6 @@ Required Packages or modules and how to install them:
 <strong> install all the packages mentioned above </strong>
 <br>
 <strong> $ npm start OR npm run start </strong>
+
+</pre>
+
