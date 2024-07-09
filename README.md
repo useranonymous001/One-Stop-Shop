@@ -30,5 +30,8 @@ Required Packages or modules and how to install them:
 <br>
 <strong> $ npm start OR npm run start </strong>
 
+<h3> Note: You need to install nodemon for the server to run: </h3>
+<strong> $ npm i -G nodemon </strong>
+  
 </pre>
 
