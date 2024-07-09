@@ -5,6 +5,10 @@ const router = express.Router();
 const productModel = require("../models/product_model");
 const userModel = require("../models/user_model");
 const bcrypt = require("bcrypt");
+const c = require("config");
+const upload = require("../config/profile_config");
+const crypto = require("crypto");
+const fs = require("fs");
 
 router.get("/", (req, res) => {
   let error = req.flash("error");
@@ -13,9 +17,13 @@ router.get("/", (req, res) => {
 
 // shop routes
 router.get("/shop", isLoggedIn, async (req, res) => {
+  let user = await userModel
+    .findOne({ email: req.user.email })
+    .select("-password");
   let products = await productModel.find();
+
   let success = req.flash("success");
-  res.render("shop", { products, success });
+  res.render("shop", { products, success, user });
 });
 
 // add to cart features
@@ -27,13 +35,41 @@ router.get("/addtocart/:productId", isLoggedIn, async (req, res) => {
   res.redirect("/shop");
 });
 
+router.get("/cart/delete/:productId", isLoggedIn, async (req, res) => {
+  try {
+    let { productId } = req.params;
+
+    let user = await userModel
+      .findOneAndUpdate(
+        { email: req.user.email },
+        { $pull: { cart: productId } },
+        { new: true }
+      )
+      .populate("cart");
+
+    if (!user) {
+      req.flash("error", "user not found");
+      return res.redirect("/cart");
+    }
+
+    req.flash("success", "item delelted successfully");
+    res.redirect("/cart");
+  } catch (error) {
+    req.flash("error", "error occured while deleting the item");
+
+    res.redirect("/cart");
+  }
+});
+
 router.get("/cart", isLoggedIn, async (req, res) => {
   let user = await userModel
     .findOne({ email: req.user.email })
     .populate("cart")
     .select("-password");
   let products = user.cart;
-  res.render("cart", { products });
+  let error = req.flash("error");
+  let success = req.flash("success");
+  res.render("cart", { products, error, success, user });
 });
 
 router.get("/profile", isLoggedIn, async (req, res) => {
@@ -81,5 +117,25 @@ router.post("/profile/changePassword", isLoggedIn, async (req, res) => {
     res.redirect("/profile");
   }
 });
+
+// route for changing profile picture of the user.
+router.get("/profile/upload", isLoggedIn, (req, res) => {
+  fs.access("./public/images/uploads", (err) => {
+    console.log(err ? "does not exists" : "exists");
+  });
+  res.render("upload");
+});
+
+router.post(
+  "/profile/upload",
+  isLoggedIn,
+  upload.single("profile"),
+  async (req, res) => {
+    let user = await userModel.findOne({ email: req.user.email });
+    user.profilepic = req.file.filename;
+    await user.save();
+    res.redirect("/profile");
+  }
+);
 
 module.exports = router;

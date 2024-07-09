@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="w-full min-h-full bg-zinc-900 text-white p-10">
+      <div class="w-full flex justify-end">
+        <a
+          href="/users/logout"
+          class="bg-white text-black rounded-md px-3 py-2 text-md inline-block"
+        >
+          Sign Out</a
+        >
+      </div>
+
+      <h1 class="mb-3">Change Profile Picture</h1>
+
+      <form
+        action="/profile/upload"
+        enctype="multipart/form-data"
+        method="post"
+        autocomplete="off"
+      >
+        <input
+          class="block w-full text-md text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+          aria-describedby="file_input_help"
+          id="file_input"
+          type="file"
+          name="profile"
+        />
+        <p
+          class="mt-1 text-sm text-gray-500 dark:text-gray-300"
+          id="file_input_help"
+        >
+          SVG, PNG, JPG or GIF (MAX. 800x400px).
+        </p>
+
+        <input
+          type="submit"
+          class="px-3 py-2 bg-blue-500 block mt-3 rounded-md w-full"
+          value="Upload Profile Picture"
+        />
+      </form>
+    </div>
+  </body>
+</html>

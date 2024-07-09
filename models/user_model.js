@@ -14,6 +14,11 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  profilepic: {
+    type: String,
+    default: "default.jpg",
+  },
+
   orders: {
     type: Array,
     default: [],

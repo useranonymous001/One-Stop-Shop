@@ -8,7 +8,19 @@
     <script src="http://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <%- include('./partials/header') %> <% if(products.length < 1){ %>
+    <%- include('./partials/header', { user }) %> <% if(error.length>0){ %>
+    <div
+      class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500"
+    >
+      <span class="inline-block mt-1 mb-1 text-white"> <%= error %> </span>
+    </div>
+    <% } %> <% if(error.length>0){ %>
+    <div
+      class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500"
+    >
+      <span class="inline-block mt-1 mb-1 text-white"> <%= error %> </span>
+    </div>
+    <% } %> <% if(products.length < 1){ %>
 
     <div class="w-full min-h-screen bg-gray-100 font-sans font-semibold">
       <p class="text-1xl mt-10 p-10 text-zinc-500">
@@ -80,7 +92,7 @@
 
         <!-- need to add some payment gateway for this work -->
         <!-- need to work on delete and order function -->
-         
+
         <div class="form-container mt-10">
           <form action="">
             <div class="btns flex gap-5">
@@ -91,12 +103,12 @@
                   class="bg-green-700 px-3 py-2 rounded-md hover:bg-green-900 text-white cursor-pointer"
                 />
               </div>
-              <div class="delete">
-                <input
-                  type="submit"
-                  value="Delete Item "
+              <div class="delete mt-2">
+                <a
+                  href="/cart/delete/<%=product._id %>"
                   class="bg-red-500 px-3 py-2 rounded-md hover:bg-red-700 text-white cursor-pointer"
-                />
+                  >Delete Item</a
+                >
               </div>
             </div>
           </form>

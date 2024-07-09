@@ -20,12 +20,20 @@
 
       <% var loggedIn = typeof loggedIn !== "undefined" ? loggedIn : true %> <%
       if(loggedIn) { %>
-      <div class="flex gap-5">
+      <div class="flex gap-5 items-center">
         <a href="">Home &#127968;</a>
         <a href="/shop">Products &#x1F6CD;</a>
-        <a href="/profile">Account &#x1F5B3;</a>
         <a href="/cart"> Cart &#128722;</a>
         <a href="/users/logout" class="text-red-500">Logout &duarr;</a>
+        <a href="/profile">Account &#x1F5B3;</a>
+
+        <div class="profile-pic w-10 overflow-hidden h-10 rounded-full ml-3">
+          <img
+            class="object-cover w-full h-full object-center"
+            src="/images/uploads/<%= user.profilepic %>"
+            alt="no image"
+          />
+        </div>
       </div>
 
       <% } %>
