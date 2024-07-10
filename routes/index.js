@@ -11,8 +11,12 @@ const crypto = require("crypto");
 const fs = require("fs");
 
 router.get("/", (req, res) => {
-  let error = req.flash("error");
-  res.render("index", { error, loggedIn: false });
+  res.render("register");
+});
+
+router.get("/login", (req, res) => {
+  let message = req.flash("message");
+  res.render("login", { message });
 });
 
 // shop routes
